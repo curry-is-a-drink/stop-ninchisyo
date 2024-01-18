@@ -32,8 +32,8 @@
         }else {
             if(inputAns == questions[1].answer) {
                 $totalScore += 1;
-                navigate("/6");
             }
+            navigate("/6");
         }
     }
 
