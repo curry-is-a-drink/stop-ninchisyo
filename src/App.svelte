@@ -12,11 +12,6 @@
     import {onMount} from "svelte";
     import {Router, Route, Link, navigate} from "svelte-routing";
     import { totalScore } from "./lib/counter";
-
-
-
-
-
 </script>
 
 <Router>
