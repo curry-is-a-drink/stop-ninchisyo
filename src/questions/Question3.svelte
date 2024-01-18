@@ -8,7 +8,7 @@
     import {navigate} from "svelte-routing";
     import {totalScore} from "../lib/counter"
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-    const openai = new OpenAI({apiKey: "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", dangerouslyAllowBrowser: true});
+    const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
     let inputPrefecture;
     let inputCity;

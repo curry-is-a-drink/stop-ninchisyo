@@ -9,7 +9,7 @@
     import {totalScore} from "../lib/counter"
     import { Spinner } from 'flowbite-svelte';
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-    const openai = new OpenAI({apiKey: "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", dangerouslyAllowBrowser: true});
+    const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
     let inputVegetables = Array(10);
     $: leftTime = 0;

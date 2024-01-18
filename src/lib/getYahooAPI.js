@@ -1,7 +1,7 @@
 let jsonpID = 0;
 
 function jsonp(latitude, longitude, timeout = 7500) {
-  const url = `https://map.yahooapis.jp/placeinfo/V1/get?lat=${latitude}&lon=${longitude}&appid=dj00aiZpPW1Ma1JaU0ZxTEhnWCZzPWNvbnN1bWVyc2VjcmV0Jng9NWE-&output=json`;
+  const url = `https://map.yahooapis.jp/placeinfo/V1/get?lat=${latitude}&lon=${longitude}&appid=${import.meta.env.VITE_YAHOO_API_KEY}&output=json`;
   const head = document.querySelector('head');
   jsonpID += 1;
 
