@@ -5,5 +5,4 @@ import { enhancedImages } from '@sveltejs/enhanced-img'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [svelte(), enhancedImages()],
-  base:"/stop-ninchisyo/"
 })
