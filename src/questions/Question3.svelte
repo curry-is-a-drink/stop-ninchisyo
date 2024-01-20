@@ -7,6 +7,8 @@
     import axios from "axios";
     import {navigate} from "svelte-routing";
     import {totalScore} from "../lib/counter"
+    import ConfirmButton from "../lib/ConfirmButton.svelte";
+    import TextInput from "../lib/TextInput.svelte";
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
@@ -64,22 +66,22 @@
 
 <Question number={3}>
     <h2>今いる都道府県</h2>
-    <input type="text" bind:value={inputPrefecture}>
+    <TextInput bind:value={inputPrefecture}/>
     <h2>今いる市町村</h2>
-    <input type="text" bind:value={inputCity}>
+    <TextInput bind:value={inputCity}/>
     <h2>今いる建物(例:病院)</h2>
-    <input type="text" bind:value={inputBuilding} disabled={isInHome}>
+    <TextInput bind:value={inputBuilding} disabled={isInHome}/>
     <div class="checkbox-container">
         <input type="checkbox" on:change={() => {isInHome = !isInHome}}>
             <div>自宅ならチェック</div>
     </div>
-    <div class="button-container"><button on:click={onConfirm}>確定</button></div>
+    <div class="button-container"><ConfirmButton onClick={onConfirm}/></div>
 </Question>
 
 <style>
     .checkbox-container {
         display: flex;
-        padding-left: 10px;
+        padding-left: 90px;
     }
     .button-container {
         padding-top: 20px;

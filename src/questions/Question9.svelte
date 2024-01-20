@@ -8,6 +8,9 @@
     import axios from "axios";
     import {totalScore} from "../lib/counter"
     import { Spinner } from 'flowbite-svelte';
+    import ConfirmButton from "../lib/ConfirmButton.svelte";
+    import TextInput from "../lib/TextInput.svelte";
+
     axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     const openai = new OpenAI({apiKey: import.meta.env.VITE_OPENAI_API_KEY, dangerouslyAllowBrowser: true});
 
@@ -22,7 +25,7 @@
             leftTime++;
             await wait(1);
 
-            if(leftTime == 10) {
+            if(leftTime == 30) {
                 if(!alreadySent) await checkAnswer();
                 navigate("/10");
             }
@@ -61,15 +64,21 @@
     <h2>知っている野菜の名前をできるだけ多く入力してください</h2>
     {#if !isCheckingAnwer}
         {#each inputVegetables as inputVegetable, index}
-            <input type="text" bind:value={inputVegetables[index]} on:change={onChangeInput}>
+            <TextInput bind:value={inputVegetables[index]} onChange={onChangeInput} />
         {/each}
             
-            <div><button on:click={async() => {
+            <div class="button-container"><ConfirmButton onClick={async() => {
                 await checkAnswer();
                 navigate("10");
-            }}>確定</button></div>
+            }} /></div>
     {:else}
         <h3>答えの確認中</h3>
     {/if}
 
 </Question>
+
+<style>
+    .button-container {
+        padding-top: 20px;
+    }
+</style>

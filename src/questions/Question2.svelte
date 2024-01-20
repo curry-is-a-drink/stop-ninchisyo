@@ -5,6 +5,8 @@
     import Question from "./Question.svelte";
     import {navigate} from "svelte-routing";
     import {toHalfNum} from "../lib/toHalfNum";
+    import ConfirmButton from "../lib/ConfirmButton.svelte";
+    import TextInput from "../lib/TextInput.svelte";
     let inputYear;
     let inputMonth;
     let inputDate;
@@ -44,7 +46,7 @@
  number={2}
  >
  <h2>今日は何年か</h2>
- <input type="text" bind:value={inputYear} on:change={() => {
+ <TextInput value={inputYear} onChange={() => {
     inputYear = toHalfNum(inputYear);
 }}/>年
  <h2>今日は何月か</h2>
@@ -66,11 +68,15 @@
             <option value={weekday}>{weekday}</option>
         {/each}
     </select>
- <div class="button-container"><button on:click={getdate}>確定</button></div>
+ <div class="button-container"><ConfirmButton onClick={getdate}/></div>
 </Question>
 
 <style>
     .button-container {
         padding-top: 20px;
+    }
+
+    select {
+        font-size: xx-large;
     }
 </style>

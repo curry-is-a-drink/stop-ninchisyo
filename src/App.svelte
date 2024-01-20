@@ -19,7 +19,7 @@
     <h2>合計スコア{$totalScore}</h2>
     <Route path={"/"}>
       <h1>認知症テスト</h1>
-      <button on:click={() => {navigate("1")}}>開始</button>
+      <button on:click={() => {navigate("1")}}><span style="font-size: 1.5em;">開始</button>
     </Route>
     <Route path={"1"}><Question1/></Route>  
     <Route path={"2"}><Question2/></Route>

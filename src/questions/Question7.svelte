@@ -7,7 +7,8 @@
     import { wait } from "../lib/wait"
     import Question from "./Question.svelte";
     import { navigate } from "svelte-routing";
-    
+    import ConfirmButton from "../lib/ConfirmButton.svelte";
+    import TextInput from "../lib/TextInput.svelte";
     $: screenNumber = 0;
     let inputWord;
 
@@ -55,17 +56,17 @@
  >
  <h2>質問4で先ほど覚えてもらった言葉をもう一度入力してください</h2>
     {#if hints[getHint()].show}
-        <p>ヒント: {hints[getHint()].str}</p>
+        <p><span style="color: deeppink;font-size:1.5em">ヒント: {hints[getHint()].str}</span></p>
     {/if}
     <h3>{answerTime + 1}つ目</h3>
-    <input type="text" bind:value={inputWord}>
+    <TextInput bind:value={inputWord} />
 
     <button on:click={
         () => {
             hints[getHint()].show = true;
         }
-    }>ヒント</button>
-    <div><button on:click={
+    }><span style="color:hotpink;">ヒント</span></button>
+    <div class="button-container"><ConfirmButton onClick={
         () => {
             const index = checkAnswer(inputWord);
             answerTime++;
@@ -83,9 +84,11 @@
                 navigate("8");
             }
         }
-    }>確定</button></div>
+    }/></div>
 </Question>
 
 <style>
-    
+    .button-container {
+        padding-top: 20px;
+    }
 </style>

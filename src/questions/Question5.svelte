@@ -5,6 +5,8 @@
     import {Router, Route, Link, navigate} from "svelte-routing";
     import {onMount} from "svelte";
     import {toHalfNum} from "../lib/toHalfNum";
+    import ConfirmButton from "../lib/ConfirmButton.svelte";
+    import TextInput from "../lib/TextInput.svelte";
 
     let inputAns;
 
@@ -45,16 +47,19 @@
     >
     <div>
         <h2>{nowQuestion.question}</h2>
-        <input type="text" bind:value={inputAns} on:change={() => {
+        <TextInput bind:value={inputAns} onChange={() => {
             inputAns = toHalfNum(inputAns);
         }}/>
     </div>
 
     
-        <div><button on:click={() => getanswer()}>確定</button></div>
+        <div class="button-container"><ConfirmButton onClick={getanswer} /></div>
     </Question>
 </div>
 
 
 <style>
+    .button-container {
+        padding-top: 20px;
+    }
 </style>

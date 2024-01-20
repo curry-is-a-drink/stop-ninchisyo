@@ -5,6 +5,8 @@
     import Question from "./Question.svelte";
     import {toHalfNum} from "../lib/toHalfNum";
     import {navigate} from "svelte-routing";
+    import ConfirmButton from "../lib/ConfirmButton.svelte";
+    import TextInput from "../lib/TextInput.svelte";
     let inputAge;
     let inputBirthday;
     function getAge(year, month, day) {
@@ -43,7 +45,11 @@
 
         const age = getAge(inputYear,inputMonth, inputDate);
         const difference = age - inputAge;
-        if(difference <= 2 && difference >= -2) $totalScore += 1;
+        console.log(inputBirthday);
+        console.log(age, inputAge);
+        if(difference <= 2 && difference >= -2) {
+            $totalScore += 1;
+        }
         navigate("2");
 
     }
@@ -54,13 +60,13 @@
         number={1}
     >
         <h2>年齢はいくつですか</h2>
-        <input type="text" bind:value={inputAge} on:change={() => {
+        <TextInput bind:value={inputAge} onChange={() => {
             inputAge = toHalfNum(inputAge);
         }}/>
         <h2>生年月日を答えてください</h2>
-        <input type="date" bind:value={inputBirthday}>  
+        <input type="date" bind:value={inputBirthday} style="font-size: 2em;">
     
-        <div class="button-container"><button on:click={onConfirm}>確定</button></div>
+        <div class="button-container"><ConfirmButton onClick={onConfirm} /></div>
     </Question>
 </div>
 
@@ -69,4 +75,5 @@
     .button-container {
         padding-top: 20px;
     }
+
 </style>

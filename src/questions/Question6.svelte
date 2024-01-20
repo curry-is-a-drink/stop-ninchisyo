@@ -6,6 +6,8 @@
     import {wait} from "../lib/wait";
     import { onMount, afterUpdate } from "svelte";
     import {toHalfNum} from "../lib/toHalfNum";
+    import ConfirmButton from "../lib/ConfirmButton.svelte";
+    import TextInput from "../lib/TextInput.svelte";
 
     let inputAns;
 
@@ -69,38 +71,43 @@
 
     {#if screenNumber == 1}
     <div>
-        <h2>{nowQuestion.question1}</h2>
+        <h2><span style="color:deeppink;font-size:180%;">{nowQuestion.question1}</span></h2>
     </div>
     {/if}
 
     {#if  screenNumber == 2}
     <div>
         <h2>入力例：〇-〇-〇</h2>
-        <input type="text" bind:value={inputAns} on:change={() => {
+        <TextInput bind:value={inputAns} onChange={() => {
             inputAns = toHalfNum(inputAns);
         }}/>
-        <button on:click={() =>{screenNumber=3; getanswer()}}>確定</button>
+        <div class="button-container">
+            <ConfirmButton onClick={() =>{screenNumber=3; getanswer()}} />
+        </div>
     </div>
     {/if}
 
     {#if screenNumber == 3}
     <div>
-        <h2>{nowQuestion.question2}</h2>
+        <h2><span style="color:deeppink;font-size:180%;">{nowQuestion.question2}</span></h2>
     </div>
     {/if}
 
     {#if  screenNumber == 4}
     <div>
         <h2>入力例：〇-〇-〇-〇</h2>
-        <input type="text" bind:value={inputAns} on:change={() => {
+        <TextInput bind:value={inputAns} onChange={() => {
             inputAns = toHalfNum(inputAns);
         }}/>
-        <button on:click={() => getanswer()}>確定</button>
+        <div class="button-container">
+            <ConfirmButton onClick={() => getanswer()}/>
+        </div>
     </div>
     {/if}
 </Question>
 
-
-
 <style>
+    .button-container {
+        padding-top: 20px;
+    }
 </style>

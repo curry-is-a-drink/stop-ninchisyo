@@ -5,9 +5,10 @@
     import {wait} from "../lib/wait"
     import Question from "./Question.svelte";
     import {navigate} from "svelte-routing";
-    
+    import ConfirmButton from "../lib/ConfirmButton.svelte";
+    import TextInput from "../lib/TextInput.svelte";
 
-    let inputThings = [];
+    let inputThings = Array(5);
     function getthings()
     {
         const values = ['とけい', 'かぎ', 'たばこ', 'えんぴつ', 'すいか'];
@@ -57,13 +58,12 @@
 {#if screenNumber == 2}
     <div>
         <h2>５つの物の中で覚えているものをひらがなで入力してください</h2>
-        <input type="text" bind:value={inputThings[0]}/>
-        <input type="text" bind:value={inputThings[1]}/>
-        <input type="text" bind:value={inputThings[2]}/>
-        <input type="text" bind:value={inputThings[3]}/>
-        <input type="text" bind:value={inputThings[4]}/>
+        {#each inputThings as thing, index}
+            <TextInput bind:value={inputThings[index]} />
+        {/each}
     </div>
-    <div><button on:click={getthings}>確定</button></div>
+    <div class="button-container"><ConfirmButton onClick={getthings}/></div>
+
 {/if}
 
 
@@ -73,5 +73,9 @@
     img {
         width: 200px;
         height: 200px;
+    }
+
+    .button-container {
+        padding-top: 20px;
     }
 </style>
